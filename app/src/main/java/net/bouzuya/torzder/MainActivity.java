@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -26,8 +25,8 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button button = (Button) findViewById(R.id.button);
-        ListView listView = (ListView) findViewById(R.id.listView);
+        Button button = (Button) findViewById(R.id.talkListButton);
+        ListView listView = (ListView) findViewById(R.id.talkListView);
         final TalkListAdapter adapter = new TalkListAdapter(this);
         listView.setAdapter(adapter);
 
