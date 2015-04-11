@@ -2,13 +2,21 @@ package net.bouzuya.torzder;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import net.bouzuya.torzder.models.Talk;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class MainActivity extends ActionBarActivity {
+    private static final String LOG_TAG = "torzder";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +27,8 @@ public class MainActivity extends ActionBarActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                List<Talk> talkList = fetchTalkList();
+                Log.d(LOG_TAG, String.format("talkList length: %d", talkList.size()));
             }
         });
     }
@@ -43,5 +53,16 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private List<Talk> fetchTalkList() {
+        // TODO
+        List<Talk> talks = new ArrayList<>();
+        Talk talk = new Talk();
+        talk.id = 2041;
+        talk.title = "Want to innovate? Become a \"now-ist\"";
+        talk.speaker = "Joi Ito";
+        talks.add(talk);
+        return talks;
     }
 }
