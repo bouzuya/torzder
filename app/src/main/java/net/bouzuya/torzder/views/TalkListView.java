@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
+import net.bouzuya.torzder.MainActivity;
 import net.bouzuya.torzder.R;
 import net.bouzuya.torzder.models.Talk;
 
@@ -42,7 +43,8 @@ public class TalkListView extends RelativeLayout {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Talk talk = adapter.getItem(position);
                 Log.d(LOG_TAG, String.format("selected talk: %s", talk));
-
+                MainActivity mainActivity = (MainActivity) getContext();
+                mainActivity.showTalk(talk);
             }
         });
     }

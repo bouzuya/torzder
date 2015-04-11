@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.widget.RelativeLayout;
 
 import net.bouzuya.torzder.models.Talk;
+import net.bouzuya.torzder.views.TalkDetailView;
 import net.bouzuya.torzder.views.TalkListView;
 
 
@@ -40,6 +41,12 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void showTalk(Talk talk) {
+        RelativeLayout layout = (RelativeLayout) findViewById(R.id.container);
+        layout.removeAllViews();
+        layout.addView(new TalkDetailView(this, talk));
     }
 
 }
