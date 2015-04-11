@@ -2,27 +2,15 @@ package net.bouzuya.torzder;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 import net.bouzuya.torzder.models.Talk;
-import net.bouzuya.torzder.views.TalkListAdapter;
 import net.bouzuya.torzder.views.TalkListView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity {
-    private static final String LOG_TAG = "torzder";
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

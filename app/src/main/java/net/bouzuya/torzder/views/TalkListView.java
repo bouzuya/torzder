@@ -48,7 +48,7 @@ public class TalkListView extends RelativeLayout {
     }
 
     private List<Talk> fetchTalkList() {
-        // TODO
+        // TODO:
         List<Talk> talks = new ArrayList<>();
         Talk talk = new Talk();
         talk.id = 2041;
