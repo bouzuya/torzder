@@ -2,21 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    tools:context=".MainActivity">
-
-    <Button
-        android:id="@+id/talkListButton"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:text="@string/talk_list_button_text" />
-
-    <ListView
-        android:id="@+id/talkListView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/talkListButton" />
+    tools:context=".MainActivity"
+    android:id="@+id/container">
 
 </RelativeLayout>

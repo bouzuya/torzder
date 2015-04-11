@@ -9,9 +9,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import net.bouzuya.torzder.models.Talk;
 import net.bouzuya.torzder.views.TalkListAdapter;
+import net.bouzuya.torzder.views.TalkListView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,28 +28,8 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button button = (Button) findViewById(R.id.talkListButton);
-        ListView listView = (ListView) findViewById(R.id.talkListView);
-        final TalkListAdapter adapter = new TalkListAdapter(this);
-        listView.setAdapter(adapter);
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                List<Talk> talkList = fetchTalkList();
-                Log.d(LOG_TAG, String.format("talkList length: %d", talkList.size()));
-                adapter.clear();
-                adapter.addAll(talkList);
-            }
-        });
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Talk talk = adapter.getItem(position);
-                Log.d(LOG_TAG, String.format("selected talk: %s", talk));
-            }
-        });
+        RelativeLayout layout = (RelativeLayout) findViewById(R.id.container);
+        layout.addView(new TalkListView(this));
     }
 
     @Override
@@ -72,14 +54,4 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private List<Talk> fetchTalkList() {
-        // TODO
-        List<Talk> talks = new ArrayList<>();
-        Talk talk = new Talk();
-        talk.id = 2041;
-        talk.title = "Want to innovate? Become a \"now-ist\"";
-        talk.speaker = "Joi Ito";
-        talks.add(talk);
-        return talks;
-    }
 }
