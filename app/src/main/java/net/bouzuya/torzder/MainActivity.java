@@ -12,13 +12,19 @@ import net.bouzuya.torzder.views.TalkListView;
 
 
 public class MainActivity extends ActionBarActivity {
+    private TalkListView talkListView;
+    private TalkDetailView talkDetailView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        talkListView = new TalkListView(this);
+        talkDetailView = new TalkDetailView(this);
+
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.container);
-        layout.addView(new TalkListView(this));
+        layout.addView(talkListView);
     }
 
     @Override
@@ -43,10 +49,25 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+        // NOTE: (finish) <- TalkListView <- TalkDetailView
+        if (talkListView.getParent() != null) {
+            // (finish) <- TalkListView
+            finish();
+        } else {
+            // TalkListView <- TalkDetailView
+            RelativeLayout layout = (RelativeLayout) findViewById(R.id.container);
+            layout.removeAllViews();
+            layout.addView(talkListView);
+        }
+    }
+
     public void showTalk(Talk talk) {
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.container);
         layout.removeAllViews();
-        layout.addView(new TalkDetailView(this, talk));
+        talkDetailView.setTalk(talk);
+        layout.addView(talkDetailView);
     }
 
 }
