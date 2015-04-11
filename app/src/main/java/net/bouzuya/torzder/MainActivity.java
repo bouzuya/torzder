@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import net.bouzuya.torzder.models.Talk;
+import net.bouzuya.torzder.views.TalkListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +28,7 @@ public class MainActivity extends ActionBarActivity {
 
         Button button = (Button) findViewById(R.id.button);
         ListView listView = (ListView) findViewById(R.id.listView);
-        final ArrayAdapter<Talk> adapter = new ArrayAdapter<>(
-                this, android.R.layout.simple_list_item_1);
+        final TalkListAdapter adapter = new TalkListAdapter(this);
         listView.setAdapter(adapter);
 
         button.setOnClickListener(new View.OnClickListener() {
