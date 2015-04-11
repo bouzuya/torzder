@@ -6,7 +6,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 
 import net.bouzuya.torzder.models.Talk;
 
@@ -24,11 +26,18 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         Button button = (Button) findViewById(R.id.button);
+        ListView listView = (ListView) findViewById(R.id.listView);
+        final ArrayAdapter<Talk> adapter = new ArrayAdapter<>(
+                this, android.R.layout.simple_list_item_1);
+        listView.setAdapter(adapter);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 List<Talk> talkList = fetchTalkList();
                 Log.d(LOG_TAG, String.format("talkList length: %d", talkList.size()));
+                adapter.clear();
+                adapter.addAll(talkList);
             }
         });
     }
