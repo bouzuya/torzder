@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -37,6 +38,14 @@ public class MainActivity extends ActionBarActivity {
                 Log.d(LOG_TAG, String.format("talkList length: %d", talkList.size()));
                 adapter.clear();
                 adapter.addAll(talkList);
+            }
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Talk talk = adapter.getItem(position);
+                Log.d(LOG_TAG, String.format("selected talk: %s", talk));
             }
         });
     }
