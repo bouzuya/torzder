@@ -2,6 +2,7 @@ package net.bouzuya.torzder.views;
 
 import android.content.Context;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
@@ -27,6 +28,7 @@ public class TalkDetailView extends LinearLayout {
         TextView idTextView = (TextView) findViewById(R.id.idTextView);
         TextView speakerTextView = (TextView) findViewById(R.id.speakerTextView);
         TextView titleTextView = (TextView) findViewById(R.id.titleTextView);
+        final ListView captionListView = (ListView) findViewById(R.id.listView);
 
         idTextView.setText(Integer.toString(talk.id));
         speakerTextView.setText(talk.speaker);
@@ -38,7 +40,9 @@ public class TalkDetailView extends LinearLayout {
                 new Response.Listener<List<Caption>>() {
                     @Override
                     public void onResponse(List<Caption> response) {
-
+                        CaptionListAdapter adapter = new CaptionListAdapter(getContext());
+                        adapter.addAll(response);
+                        captionListView.setAdapter(adapter);
                     }
                 },
                 new Response.ErrorListener() {
