@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.RelativeLayout;
 
 import net.bouzuya.torzder.models.Caption;
@@ -60,16 +61,28 @@ public class MainActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-        // NOTE: (finish) <- TalkListView <- TalkDetailView
+        // NOTE: (finish) <- TalkListView <- TalkDetailView <- CaptionDetailView
         if (talkListView.getParent() != null) {
             // (finish) <- TalkListView
             finish();
         } else {
-            // TalkListView <- TalkDetailView
+            // TalkListView <- TalkDetailView <- CaptionDetailView
             RelativeLayout layout = (RelativeLayout) findViewById(R.id.container);
+            View nextView;
+            boolean hasBackButton;
+
+            if (talkDetailView.getParent() != null) {
+                nextView = talkListView;
+                hasBackButton = false;
+            } else if (captionDetailView.getParent() != null) {
+                nextView = talkDetailView;
+                hasBackButton = true;
+            } else {
+                throw new IllegalStateException("onBackPressed");
+            }
             layout.removeAllViews();
-            layout.addView(talkListView);
-            setHomeAsUp(false);
+            layout.addView(nextView);
+            setHomeAsUp(hasBackButton);
         }
     }
 
