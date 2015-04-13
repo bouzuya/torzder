@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 
 import net.bouzuya.torzder.models.Caption;
 import net.bouzuya.torzder.models.Talk;
+import net.bouzuya.torzder.views.CaptionDetailView;
 import net.bouzuya.torzder.views.TalkDetailView;
 import net.bouzuya.torzder.views.TalkListView;
 
@@ -16,6 +17,7 @@ import net.bouzuya.torzder.views.TalkListView;
 public class MainActivity extends Activity {
     private TalkListView talkListView;
     private TalkDetailView talkDetailView;
+    private CaptionDetailView captionDetailView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,7 @@ public class MainActivity extends Activity {
 
         talkListView = new TalkListView(this);
         talkDetailView = new TalkDetailView(this);
+        captionDetailView = new CaptionDetailView(this);
 
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.container);
         layout.addView(talkListView);
@@ -71,7 +74,11 @@ public class MainActivity extends Activity {
     }
 
     public void showCaption(Caption caption) {
-        // TODO
+        RelativeLayout layout = (RelativeLayout) findViewById(R.id.container);
+        layout.removeAllViews();
+        captionDetailView.setCaption(caption);
+        layout.addView(captionDetailView);
+        setHomeAsUp(true);
     }
 
     public void showTalk(Talk talk) {
