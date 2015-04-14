@@ -1,6 +1,9 @@
 package net.bouzuya.torzder.views;
 
+import android.app.DownloadManager;
 import android.content.Context;
+import android.net.Uri;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -70,5 +73,20 @@ public class TalkDetailView extends LinearLayout {
                 }
         );
         requestQueue.add(request);
+    }
+
+    public void downloadVideo() {
+        // TODO:
+        DownloadManager downloadManager = (DownloadManager) getContext()
+                .getSystemService(Context.DOWNLOAD_SERVICE);
+        Uri uri = Uri.parse("http://bouzuya.net/index.html");
+        DownloadManager.Request request = new DownloadManager.Request(uri);
+        request.setDestinationInExternalFilesDir(
+                getContext(), Environment.DIRECTORY_DOWNLOADS, "/index.html");
+        request.setTitle("Download torzder video");
+        request.setAllowedNetworkTypes(
+                DownloadManager.Request.NETWORK_MOBILE | DownloadManager.Request.NETWORK_WIFI);
+        request.setMimeType("text/html");
+        downloadManager.enqueue(request);
     }
 }

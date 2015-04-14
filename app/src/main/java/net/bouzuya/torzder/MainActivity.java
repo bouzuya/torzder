@@ -2,6 +2,8 @@ package net.bouzuya.torzder;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.DownloadManager;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,10 +12,10 @@ import android.widget.RelativeLayout;
 
 import net.bouzuya.torzder.models.Caption;
 import net.bouzuya.torzder.models.Talk;
+import net.bouzuya.torzder.receivers.DownloadCompleteReceiver;
 import net.bouzuya.torzder.views.CaptionDetailView;
 import net.bouzuya.torzder.views.TalkDetailView;
 import net.bouzuya.torzder.views.TalkListView;
-
 
 public class MainActivity extends Activity {
     private TalkListView talkListView;
@@ -31,6 +33,10 @@ public class MainActivity extends Activity {
 
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.container);
         layout.addView(talkListView);
+
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(DownloadManager.ACTION_DOWNLOAD_COMPLETE);
+        registerReceiver(new DownloadCompleteReceiver(), filter);
     }
 
     @Override
