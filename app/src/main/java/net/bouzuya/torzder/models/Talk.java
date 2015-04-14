@@ -4,6 +4,7 @@ public class Talk {
     public int id;
     public String title;
     public String speaker;
+    public String key;
 
     @Override
     public String toString() {

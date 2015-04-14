@@ -56,6 +56,7 @@ public class TalkListView extends RelativeLayout {
         talk.id = 2041;
         talk.title = "Want to innovate? Become a \"now-ist\"";
         talk.speaker = "Joi Ito";
+        talk.key = "joi_ito_want_to_innovate_become_a_now_ist";
         talks.add(talk);
         return talks;
     }
