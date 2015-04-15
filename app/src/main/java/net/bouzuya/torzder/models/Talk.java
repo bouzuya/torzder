@@ -5,6 +5,8 @@ public class Talk {
     public String title;
     public String speaker;
     public String key;
+    public String file;
+    public int offset; // introDuration + adDuration
 
     @Override
     public String toString() {
