@@ -21,6 +21,7 @@ import net.bouzuya.torzder.R;
 import net.bouzuya.torzder.models.Caption;
 import net.bouzuya.torzder.models.CaptionListRequest;
 import net.bouzuya.torzder.models.Talk;
+import net.bouzuya.torzder.models.TalkDetailRequest;
 
 import java.util.List;
 
@@ -73,6 +74,25 @@ public class TalkDetailView extends LinearLayout {
                 }
         );
         requestQueue.add(request);
+
+        // fetch talk detail
+        TalkDetailRequest request2 = new TalkDetailRequest(
+                talk.key,
+                new Response.Listener<Talk>() {
+                    @Override
+                    public void onResponse(Talk response) {
+                        Log.d(LOG_TAG, response.toString());
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e(LOG_TAG, "fetch caption error", error);
+                    }
+                }
+        );
+        requestQueue.add(request2);
+
     }
 
     public void downloadVideo() {
